@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             setTimeout(() => {
                 window.location.reload();
-            }, 1200); // Reload after animation finishes
+            }, 5000); // Reload after 5-second animation finishes
         }
     });
 
@@ -75,7 +75,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         setTimeout(() => {
-            document.body.removeChild(container);
-        }, 1200);
+            if (document.body.contains(container)) {
+                document.body.removeChild(container);
+            }
+        }, 5000); // Remove container after 5 seconds
     }
 });

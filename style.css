@@ -213,7 +213,7 @@ html, body {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    animation: explode 1.2s ease-out forwards;
+    animation: explode 5s ease-out forwards;
 }
 @keyframes explode {
     0% {
