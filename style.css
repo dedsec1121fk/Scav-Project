@@ -1,5 +1,29 @@
 :root {
     font-size: clamp(8px, 2.5vw, 18px);
+
+    /* Light Theme */
+    --bg-color: #c0c8cd;
+    --laptop-base-color: linear-gradient(#555, #444);
+    --screen-color: #0c0c0e;
+    --screen-border-color: #333;
+    --screen-text-color: #e0e0e0;
+    --scene-border-color: #202124;
+    --social-note-bg: #FDFEFE;
+    --wall-color: #c0c8cd;
+    --wall-pattern: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d1d9da" fill-opacity="0.2"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+}
+
+[data-theme="dark"] {
+    /* Dark Theme */
+    --bg-color: #3c4043;
+    --laptop-base-color: #222;
+    --screen-color: #000;
+    --screen-border-color: #1a1a1a;
+    --screen-text-color: #b0b0b0;
+    --scene-border-color: #121212;
+    --social-note-bg: #2d2d2d;
+    --wall-color: #383a3d;
+    --wall-pattern: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d1d9da" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
 }
 
 html, body {
@@ -7,13 +31,14 @@ html, body {
     width: 100%;
     margin: 0;
     overflow: hidden;
-    background: #3c4043;
+    background: var(--bg-color);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Patrick Hand', cursive;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background 0.5s ease;
 }
 
 .scene {
@@ -23,12 +48,47 @@ html, body {
     max-width: 500px;
     max-height: 800px;
     aspect-ratio: 500 / 800;
-    background: #c0c8cd;
-    background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d1d9da" fill-opacity="0.2"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    background: var(--wall-color);
+    background-image: var(--wall-pattern);
     box-shadow: 0 0 2em rgba(0,0,0,0.35), inset 0 0 3em rgba(0,0,0,0.1);
-    border-left: 1.2em solid #202124;
-    border-right: 1.2em solid #202124;
+    border-left: 1.2em solid var(--scene-border-color);
+    border-right: 1.2em solid var(--scene-border-color);
     overflow: hidden;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+/* Walls for 3D effect */
+.wall {
+    position: absolute;
+    background: var(--wall-color);
+    box-shadow: 
+        inset -20px 0 30px rgba(0,0,0,0.2), 
+        inset 20px 0 30px rgba(0,0,0,0.2),  
+        inset 0 20px 30px rgba(0,0,0,0.2);  
+    transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+
+.left-wall {
+    left: 0; top: 0;
+    width: 50%; height: 100%;
+    transform-origin: right;
+    transform: rotateY(90deg) translateX(-50%);
+}
+
+.right-wall {
+    right: 0; top: 0;
+    width: 50%; height: 100%;
+    transform-origin: left;
+    transform: rotateY(-90deg) translateX(50%);
+}
+
+.up-wall {
+    left: 0; top: 0;
+    width: 100%; height: 50%;
+    transform-origin: bottom;
+    transform: rotateX(-90deg) translateY(-50%);
 }
 
 /* --- Newer PC Design --- */
@@ -46,13 +106,13 @@ html, body {
     bottom: 12%;
     width: 100%;
     height: 100%;
-    background: #0c0c0e;
-    border: 0.8em solid #333;
+    background: var(--screen-color);
+    border: 0.8em solid var(--screen-border-color);
     border-bottom: none;
     border-radius: 1.2em 1.2em 0 0;
     padding: 1em;
     box-sizing: border-box;
-    color: #e0e0e0;
+    color: var(--screen-text-color);
     font-family: 'Roboto Mono', monospace;
     font-size: 1.6em;
     display: flex;
@@ -61,6 +121,7 @@ html, body {
     align-items: center;
     box-shadow: 0 0 2em rgba(100, 180, 255, 0.3), inset 0 0 1.5em #000;
     animation: screenFlicker 15s infinite;
+    transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
 }
 .screen::before {
     content: '';
@@ -72,6 +133,7 @@ html, body {
     height: 0.4em;
     background: #222;
     border-radius: 50%;
+    transition: background 0.5s ease;
 }
 @keyframes screenFlicker {
     0%, 100% { box-shadow: 0 0 2em rgba(100, 180, 255, 0.3), inset 0 0 1.5em #000; }
@@ -83,7 +145,7 @@ html, body {
     bottom: 0;
     width: 100%;
     height: 15%;
-    background: linear-gradient(#555, #444);
+    background: var(--laptop-base-color);
     border: 0.3em solid #222;
     border-radius: 0 0 1.2em 1.2em;
     display: flex;
@@ -91,6 +153,7 @@ html, body {
     justify-content: center;
     padding: 0 1em;
     box-sizing: border-box;
+    transition: background 0.5s ease;
 }
 .trackpad {
     width: 30%;
@@ -98,6 +161,7 @@ html, body {
     background: #3a3a3a;
     border-radius: 0.5em;
     box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    transition: background 0.5s ease;
 }
 .progress-bar { width: 80%; height: 1em; background: #333; border: 0.1em solid #555; border-radius: 0.3em; margin-top: 0.5em; overflow: hidden; padding: 0.15em; }
 .progress { 
@@ -167,7 +231,7 @@ html, body {
 .note-5::before{ display: none; }
 
 .social-note { 
-    background: #FDFEFE; box-shadow: 0.15em 0.15em 0.2em rgba(0,0,0,0.2); 
+    background: var(--social-note-bg); box-shadow: 0.15em 0.15em 0.2em rgba(0,0,0,0.2); 
     font-weight: bold; font-size: 0.9em;
     border-radius: 0.2em; border: 1px solid #555; text-decoration: none; color: #333;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3em; 
@@ -195,6 +259,23 @@ html, body {
     font-size: 0.9em;
     color: #888;
     z-index: 11;
+}
+
+/* Theme switch button */
+.theme-switch {
+    position: absolute;
+    top: 2.5%;
+    left: 6%;
+    font-size: 1.5em;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 15;
+    transition: transform 0.2s ease;
+}
+
+.theme-switch:hover {
+    transform: scale(1.2);
 }
 
 /* Explosion Easter Egg Styles */

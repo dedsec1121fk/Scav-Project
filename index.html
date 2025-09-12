@@ -9,10 +9,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body data-theme="light">
     <div class="scene">
-        <div class="misc-note" style="top: 2.5%; left: 6%; width: 6%; height: 2.5%;"></div>
-        <div class="misc-note" style="top: 2.5%; right: 16%; width: 6%; height: 2.5%;"></div>
+        <div class="wall left-wall"></div>
+        <div class="wall right-wall"></div>
+        <div class="wall up-wall"></div>
         
         <div class="poster poster-1">
             <img src="https://raw.githubusercontent.com/dedsec1121fk/Scav-Project/3fad24d709afa5d71131313e445958658722fbc9/Assets/Images/Scav%201.jpg" alt="Scav Poster 1">
@@ -70,6 +71,7 @@
         <div class="footer-note">
             © 2025 Made by dedsec1121fk.
         </div>
+        <button id="theme-toggle" class="theme-switch">💡</button>
     </div>
 
     <script src="script.js"></script>

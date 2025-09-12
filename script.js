@@ -42,5 +42,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // The explosion function and related styles are now unused.
+    // Theme Switch Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+        html.setAttribute('data-theme', currentTheme);
+    }
+
+    themeToggle.addEventListener('click', () => {
+        let theme = html.getAttribute('data-theme');
+        if (theme === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            localStorage.setItem('theme', 'light');
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
 });
