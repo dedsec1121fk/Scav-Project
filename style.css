@@ -11,6 +11,10 @@
     --social-note-bg: #FDFEFE;
     --wall-color: #c0c8cd;
     --wall-pattern: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d1d9da" fill-opacity="0.2"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    --social-note-text-color: #333;
+    --social-note-border-color: #555;
+    --distrokid-color: #D81D30;
+    --progress-shimmer-color: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
 }
 
 [data-theme="dark"] {
@@ -24,6 +28,10 @@
     --social-note-bg: #2d2d2d;
     --wall-color: #383a3d;
     --wall-pattern: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23d1d9da" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+    --social-note-text-color: #e0e0e0;
+    --social-note-border-color: #999;
+    --distrokid-color: #92b8d0;
+    --progress-shimmer-color: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0) 100%);
 }
 
 html, body {
@@ -168,7 +176,7 @@ html, body {
     width: 33%; height: 100%; background: #4285F4; border-radius: 0.15em; 
     transition: width 1s ease-out;
     animation: shimmer 2s infinite;
-    background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+    background-image: var(--progress-shimmer-color);
     background-size: 200% 100%;
 }
 @keyframes shimmer {
@@ -233,7 +241,7 @@ html, body {
 .social-note { 
     background: var(--social-note-bg); box-shadow: 0.15em 0.15em 0.2em rgba(0,0,0,0.2); 
     font-weight: bold; font-size: 0.9em;
-    border-radius: 0.2em; border: 1px solid #555; text-decoration: none; color: #333;
+    border-radius: 0.2em; border: 1px solid var(--social-note-border-color); text-decoration: none; color: var(--social-note-text-color);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.3em; 
     padding: 5%; transition: transform 0.2s ease, background-color 0.2s ease;
     aspect-ratio: 1 / 1;
@@ -245,7 +253,7 @@ html, body {
 .social-note.tiktok { transform: rotate(-5deg); }
 .social-note.spotify { transform: rotate(8deg); }
 .social-note.ig { transform: rotate(2deg); }
-.social-note.distrokid { transform: rotate(-3deg); color: #D81D30; }
+.social-note.distrokid { transform: rotate(-3deg); color: var(--distrokid-color); }
 
 .misc-note { position: absolute; background-color: #f7d04f; border: 0.15em solid #a3862c; border-radius: 0.1em; z-index: 5;}
 
