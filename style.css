@@ -146,9 +146,11 @@ html, body {
     display: block;
 }
 .poster-1 { top: 8.75%; right: 8%; width: 30%; height: 21.25%; transform: rotate(3deg); --rotate: 3deg; z-index: 5; }
-.poster-2 { top: 12.5%; left: 12%; width: 32%; height: 17.5%; transform: rotate(-3deg); --rotate: -3deg; z-index: 6; }
+/* MOVED: Poster moved from top-left to lower-right area */
+.poster-2 { top: 58%; left: 52%; width: 32%; height: 17.5%; transform: rotate(10deg); --rotate: 10deg; z-index: 6; }
 
-.note-3 { top: 5%; left: 32%; width: 22%; height: 7.5%; background-color: #a4e3e8; transform: rotate(2deg); --rotate: 2deg; z-index: 7; }
+/* HIDDEN: This note is now hidden to make space for the video */
+.note-3 { display: none; }
 .note-4 { top: 33%; left: 71%; width: 22%; height: 11.25%; background-color: #fefefe; transform: rotate(-5deg); --rotate: -5deg; font-size: 3em; color: #d1453b; font-weight: bold; border: 0.2em solid #333; z-index: 9; cursor: pointer; }
 
 .note-5 { 
@@ -195,6 +197,23 @@ html, body {
     font-size: 0.9em;
     color: #888;
     z-index: 11;
+}
+
+/* ADDED: Styles for the embedded TikTok video */
+#tiktok-video-container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    width: 45%;
+    transform: rotate(-4deg);
+    z-index: 12;
+    box-shadow: 0.4em 0.4em 0.8em rgba(0,0,0,0.25);
+}
+#tiktok-video-container .tiktok-embed {
+    margin: 0 !important;
+    border: 0.8em solid #fff;
+    border-radius: 0.2em;
+    background-color: #fff;
 }
 
 /* Explosion Easter Egg Styles */
